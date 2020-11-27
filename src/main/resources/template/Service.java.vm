@@ -1,0 +1,31 @@
+package ${package}.${moduleName}.service;
+
+import ${package}.${moduleName}.model.${classNameDO};
+import com.centre.common.model.Result;
+import com.baomidou.mybatisplus.extension.service.IService;
+import java.util.Map;
+
+/**
+ * <p>
+ *     ${comments}
+ * </p>
+ * @author ${author}
+ * @Date: ${datetime}
+ */
+public interface I${className}Service extends IService<${classNameDO}> {
+
+    /**
+     * 列表
+     * @param params
+     * @return
+     */
+    Result<${classNameDO}> findList(Map<String, Object> params);
+
+    /***
+     * 根据编号查询
+     * @param ${pk.attrname} 编号
+     * @return
+     */
+    Result<${classNameDO}> findUserById(Long ${pk.attrname});
+}
+

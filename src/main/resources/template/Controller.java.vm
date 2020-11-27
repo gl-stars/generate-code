@@ -1,0 +1,42 @@
+package ${package}.${moduleName}.controller;
+
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import lombok.extern.slf4j.Slf4j;
+import ${package}.${moduleName}.service.I${className}Service;
+import com.centre.common.model.Result;
+
+/**
+ * <p>
+ *     ${comments}
+ * </p>
+ * @author ${author}
+ * @Date: ${datetime}
+ */
+@Slf4j
+@RestController
+@RequestMapping("/${pathName}")
+public class ${className}Controller {
+
+    @Autowired
+    private I${className}Service ${classname}Service;
+
+    /**
+     * 查询列表
+     */
+    @GetMapping
+    public Result list(@RequestParam Map<String, Object> params) {
+        return ${classname}Service.findList(params);
+    }
+
+    /**
+     * 查询
+     * @param ${pk.attrname} 编号
+     * @return
+     */
+    @GetMapping("/{${pk.attrname}}")
+    public Result findUserById(@PathVariable Long ${pk.attrname}) {
+        return ${classname}Service.findUserById(${pk.attrname});
+    }
+}

@@ -1,0 +1,51 @@
+package ${package}.${moduleName}.service.impl;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.centre.common.constant.CommonConstant;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.collections4.MapUtils;
+import lombok.extern.slf4j.Slf4j;
+import com.centre.common.model.Result;
+import ${package}.${moduleName}.model.${classNameDO};
+import ${package}.${moduleName}.mapper.${className}Mapper;
+import ${package}.${moduleName}.service.I${className}Service;
+
+/**
+ * <p>
+ *     ${comments}
+ * </p>
+ * @author ${author}
+ * @Date: ${datetime}
+ */
+@Slf4j
+@Service
+public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${classNameDO}> implements I${className}Service {
+
+    /**
+     * 列表
+     * @param params 条件
+     * @return
+     */
+    @Override
+    public Result<${classNameDO}> findList(Map<String, Object> params){
+        Page<${classNameDO}> page = new Page<>(MapUtils.getInteger(params, "page", CommonConstant.PAGE_INTEGER), MapUtils.getInteger(params, "limit",CommonConstant.LIMIT_INTEGER));
+        List<${classNameDO}> list  =  baseMapper.findList(page, params);
+        //返回查询数据
+        return Result.<${classNameDO}>succeed(list,page.getTotal());
+    }
+
+    /**
+     * 根据编号查询
+     * @param ${pk.attrname} 编号
+     * @return
+     */
+    @Override
+    public Result<${classNameDO}> findUserById(Long ${pk.attrname}) {
+        ${classNameDO} model = super.getById(${pk.attrname});
+        return Result.<${classNameDO}>succeed(model);
+    }
+
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${package}.${moduleName}.mapper.${className}Mapper">
+	<resultMap id="BaseResultMap" type="${package}.${moduleName}.model.${className}">
+	#foreach ($column in $columns)
+	#if($column.columnName == $pk.columnName)
+	<id column="${pk.columnName}" property="${pk.columnName}" />
+	#else
+    <result column="${column.columnName}" property="${column.attrname}" />
+	#end
+	#end
+</resultMap>
+
+	<sql id="${classname}Sql">
+	  #foreach($column in $columns)${column.columnName}#if($foreach.hasNext),#end #end
+
+	</sql>
+
+	<!-- 批量添加 -->
+	<insert id="insertList">
+		INSERT INTO ${tableName} (#foreach($column in $columns)${column.columnName}#if($foreach.hasNext),#end #end) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#foreach($column in $columns)#{item.${column.attrname}}#if($foreach.hasNext),#end #end)
+		</foreach>
+	</insert>
+	
+	<!-- 指定字段插入 -->
+	<insert id="insertSelective" parameterType="${package}.${moduleName}.model.${className}" >
+	insert into orders (
+	#foreach($column in $columns)<if test="${column.attrname} != null and ${column.attrname} !=''" >
+      ${column.columnName}#if($foreach.hasNext),
+	#end
+</if>
+	#end)
+	values (
+	#foreach($column in $columns)<if test="${column.attrname} != null and ${column.attrname} !=''" >
+	  #{${column.columnName}}#if($foreach.hasNext),
+	#end
+</if>
+	#end)
+	</insert>
+
+	<!-- 批量添加或者删除 -->
+	<insert id="replaceList">
+		REPLACE INTO ${tableName} (#foreach($column in $columns)${column.columnName}#if($foreach.hasNext),#end #end) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#foreach($column in $columns)#{item.${column.attrname}}#if($foreach.hasNext),
+			#end #end)
+		</foreach>
+	</insert>
+
+	<!-- 指定字段更改 -->
+	<update id="updateByPrimaryKeySelective" parameterType="${package}.${moduleName}.model.${className}" >
+		update ${tableName}
+		<set>
+		#foreach($column in $columns)
+	<if test="${column.attrname} != null and ${column.attrname} !=''" >
+				${column.columnName} = #{${column.attrname}}#if($foreach.hasNext),
+		#end
+	</if>
+		#end 
+		</set>
+		where id = #{id}
+	</update>
+	
+</mapper>

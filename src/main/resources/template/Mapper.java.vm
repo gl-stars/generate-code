@@ -1,0 +1,31 @@
+package ${package}.${moduleName}.mapper;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${package}.${moduleName}.model.${classNameDO};
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+#if(${display})
+import org.apache.ibatis.annotations.Mapper;
+#end
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+import java.util.Map;
+/**
+ * <p>
+ *     ${comments}
+ * </p>
+ * @author ${author}
+ * @Date: ${datetime}
+ */
+#if(${display})
+@Mapper
+#end
+public interface ${className}Mapper extends BaseMapper<${classNameDO}> {
+
+    /**
+     * 分页查询${comments}
+     * @param page
+     * @param params
+     * @return
+     */
+    List<${classNameDO}> findList(Page<${classNameDO}> page, @Param("p") Map<String, Object> params);
+}
