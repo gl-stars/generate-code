@@ -3,6 +3,7 @@ package com.central.generator.controller;
 import com.alibaba.fastjson.JSON;
 import com.central.generator.service.SysGeneratorService;
 import com.centre.common.model.Result;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -24,9 +25,7 @@ public class SysGeneratorController {
     @Autowired
     private SysGeneratorService sysGeneratorService;
 
-    /**
-     * 列表
-     */
+    @ApiOperation(value = "查询数据表列表")
     @ResponseBody
     @GetMapping("/list")
     public Result getTableList(@RequestParam Map<String, Object> params) {
@@ -35,6 +34,7 @@ public class SysGeneratorController {
     /**
      * 生成代码FileUtil
      */
+    @ApiOperation(value = "根据数据表生产相应代码")
     @GetMapping("/code")
     public void makeCode(HttpServletResponse response,@RequestParam Map<String,String> basicMap) throws IOException {
         // 判断表名是否为空
