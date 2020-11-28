@@ -3,6 +3,7 @@ package com.central.generator.controller;
 import com.alibaba.fastjson.JSON;
 import com.central.generator.service.SysGeneratorService;
 import com.centre.common.model.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.IOUtils;
@@ -18,6 +19,7 @@ import java.util.Map;
 /**
  * @Author: GL
  */
+@Api(tags = "代码生成")
 @RestController
 @RequestMapping("/generator")
 public class SysGeneratorController {
