@@ -1,5 +1,9 @@
 # 代码生成器[code-generator]
 
+这个代码生成器是之前为自己的项目风格量身打造的，所以目前使用的版本控制器还是自己的。现在手头时间有些紧，还没来得及处理。现在的这个版本控制器源码我已经开源到GitHub上了，可以直接下载下来，使用 `mvn install`命令安装到本地仓库，然后这个代码生成器就可以使用了。
+
+版本控制器地址：https://github.com/gl-stars/small-study-case
+
 # 一、template模板中变量的来源
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019122608424625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODUzNDQ3,size_16,color_FFFFFF,t_70)
